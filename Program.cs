@@ -56,9 +56,11 @@
 
 
 
-          
 
-
+            Console.WriteLine("Add.");
+            Console.WriteLine("Modifical.");
+            Console.WriteLine("RemoveFirstName.");
+            Console.WriteLine("RemoveLastName");
 
             string endOrCommand = Console.ReadLine();
 
@@ -105,8 +107,10 @@
                                 modification.ModificationWorkNumber(phoneList);
                                 break;
                             case "4":
+                                modification.ModificationHomeNUmber(phoneList);
                                 break;
                             case "5":
+                                modification.ModificationMobileNUmber(phoneList);
                                 break;
                         }
 
@@ -214,8 +218,14 @@
 
                 }
 
+                Console.WriteLine("Add.");
+                Console.WriteLine("Modifical.");
+                Console.WriteLine("RemoveFirstName.");
+                Console.WriteLine("RemoveLastName.");
+                Console.WriteLine("End.");
 
                 endOrCommand = Console.ReadLine();
+                Console.Clear();
             }
 
 
@@ -287,7 +297,7 @@
             // https://www.newtonsoft.com/json/help/html/DeserializeWithJsonSerializerFromFile.htm
             // 
 
-            List<PhoneBook> PhoneJsonList;
+          //  List<PhoneBook> PhoneJsonList;
 
             using (StreamReader file = File.OpenText(@"..\..\..\phoneList.json"))
             {

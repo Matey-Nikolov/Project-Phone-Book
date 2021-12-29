@@ -113,24 +113,62 @@ namespace Project_PhoneBook
             {
                 if (phoneNumber.PhoneNumbers["work"] == workPhoneNumber)
                 {
+                    Console.WriteLine("Enter the new phone number.");
+                    string newPhoneNumber = Console.ReadLine();
 
+                    phoneNumber.PhoneNumbers["work"] = newPhoneNumber;
                 }
                 else
                 {
-                    Conc
+                    Console.WriteLine("Invalid phone number!");
+                    return;
                 }
             }
 
         }
 
-        public void ModificationHomeNUmber()
+        public void ModificationHomeNUmber(List<PhoneBook> phoneList) // <T>
         {
+            Console.WriteLine("Enter the home phone number you want to change it.");
+            string workPhoneNumber = Console.ReadLine();
 
+            foreach (var phoneNumber in phoneList)
+            {
+                if (phoneNumber.PhoneNumbers["home"] == workPhoneNumber)
+                {
+                    Console.WriteLine("Enter the new phone number.");
+                    string newPhoneNumber = Console.ReadLine();
+
+                    phoneNumber.PhoneNumbers["home"] = newPhoneNumber;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid phone number!");
+                    return;
+                }
+            }
         }
 
-        public void ModificationMobileNUmber()
+        public void ModificationMobileNUmber(List<PhoneBook> phoneList) // <T>
         {
+            Console.WriteLine("Enter the mobile phone number you want to change it.");
+            string workPhoneNumber = Console.ReadLine();
 
+            foreach (var phoneNumber in phoneList)
+            {
+                if (phoneNumber.PhoneNumbers["mobile"] == workPhoneNumber)
+                {
+                    Console.WriteLine("Enter the new phone number.");
+                    string newPhoneNumber = Console.ReadLine();
+
+                    phoneNumber.PhoneNumbers["mobile"] = newPhoneNumber;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid phone number!");
+                    return;
+                }
+            }
         }
     }
 }
