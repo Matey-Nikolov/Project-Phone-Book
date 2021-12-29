@@ -117,6 +117,7 @@ namespace Project_PhoneBook
                     string newPhoneNumber = Console.ReadLine();
 
                     phoneNumber.PhoneNumbers["work"] = newPhoneNumber;
+                    return;
                 }
                 else
                 {

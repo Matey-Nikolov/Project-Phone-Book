@@ -25,7 +25,7 @@
                 using (StreamReader streamReader = new StreamReader(fileName))
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    PhoneJsonList = (List<PhoneBook>)serializer.Deserialize(streamReader, typeof(List<PhoneBook>));
+                    phoneList = (List<PhoneBook>)serializer.Deserialize(streamReader, typeof(List<PhoneBook>));
                 }
             }
             catch (FileNotFoundException)
@@ -117,89 +117,9 @@
                         //  phoneList.Add(phoneBook);
                         break;
 
-                    case "RemoveFirstName":
+                    case "Delete user":
 
-                        Console.WriteLine("Write first name for remove.");
-                        string removeFirstName = Console.ReadLine();
-
-                        List<PhoneBook> foundDuplicateFirstName = new List<PhoneBook>();
-
-                        for (int i = 0; i < phoneList.Count; i++)
-                        {
-                            if (phoneList[i].FirstName == removeFirstName)
-                                foundDuplicateFirstName.Add(phoneList[i]);
-                        }
-
-
-                        if (foundDuplicateFirstName.Count != 1)
-                        {
-                            Console.WriteLine("Duplicate name!");
-
-                            int count = 1;
-                            foreach (var item in foundDuplicateFirstName)
-                            {
-                                Console.WriteLine($"{count} -> {item.FirstName} - phone number {item.PhoneNumbers["work"]}");
-                                count++;
-                            }
-
-                            Console.WriteLine("Choose with numbers ");
-                            int number = int.Parse(Console.ReadLine());
-
-                            phoneList[number].FirstName = null;
-                        }
-                        else
-                        {
-                            for (int j = 0; j < phoneList.Count; j++)
-                            {
-                                if (phoneList[j].FirstName == removeFirstName)
-                                    phoneList[j].FirstName = null;
-
-                                    break;
-                            }
-                        }
                         break;
-                    case "RemoveLastName":
-
-                        Console.WriteLine("Write last name for remove.");
-                        string removeLastName = Console.ReadLine();
-
-                        List<PhoneBook> foundDuplicateLastName = new List<PhoneBook>();
-
-                        for (int i = 0; i < phoneList.Count; i++)
-                        {
-                            if (phoneList[i].FirstName == removeLastName)
-                                foundDuplicateLastName.Add(phoneList[i]);
-                        }
-
-
-                        if (foundDuplicateLastName.Count != 1)
-                        {
-                            Console.WriteLine("Duplicate name!");
-
-                            int count = 1;
-                            foreach (var item in foundDuplicateLastName)
-                            {
-                                Console.WriteLine($"{count} -> {item.FirstName} - phone number {item.PhoneNumbers["work"]}");
-                                count++;
-                            }
-
-                            Console.WriteLine("Choose with numbers ");
-                            int number = int.Parse(Console.ReadLine());
-
-                            phoneList[number].FirstName = null;
-                        }
-                        else
-                        {
-                            for (int j = 0; j < phoneList.Count; j++)
-                            {
-                                if (phoneList[j].FirstName == removeLastName)
-                                    phoneList[j].FirstName = null;
-
-                                break;
-                            }
-                        }
-                        break;
-
                     case "DeletePhoneNumber":
 
                         Console.WriteLine("Write phone number. This is the permanent delete number.");
