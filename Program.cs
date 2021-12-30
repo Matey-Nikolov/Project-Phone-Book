@@ -47,80 +47,80 @@
             }
 
 
+            Console.WriteLine("Add - 1."); // ok
+            Console.WriteLine("Change user - 2."); // 5/5
+            Console.WriteLine("Delete user - ?"); // 0/100
+            Console.WriteLine("End - 5");   // 0/100
 
+            string endOrCommand = Console.ReadLine().ToLower();
 
-
-
-
-
-
-
-
-
-            Console.WriteLine("Add.");
-            Console.WriteLine("Modifical.");
-            Console.WriteLine("RemoveFirstName.");
-            Console.WriteLine("RemoveLastName");
-
-            string endOrCommand = Console.ReadLine();
-
-            while (endOrCommand != "End")
+            while (endOrCommand != "5")
             {
                 string command = endOrCommand;
 
                 switch (command)
                 {
-                    case "Add":
-                        Console.WriteLine("Write first name.");
+                    case "1":
+                        PhoneBook phoneBook = new PhoneBook();
+
+                        Console.Write("Write first name: ");
                         string firstName = Console.ReadLine();
-                        Console.WriteLine("Write last name.");
+                        Console.Write("Write last name: ");
                         string lastName = Console.ReadLine();
-                        Console.WriteLine("Write phone number.");
+                        Console.Write("Write work phone number: ");
                         string workPhoneNumber = Console.ReadLine();
 
-                        PhoneBook phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber);
+                        if (firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("You must write first, last name and work phone number!");
+
+                            Console.Write("Write first name: ");
+                            firstName = Console.ReadLine();
+                            Console.Write("Write last name: ");
+                            lastName = Console.ReadLine();
+                            Console.Write("Write work phone number: ");
+                            workPhoneNumber = Console.ReadLine();
+
+                            if (firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty)
+                            {
+                                Console.WriteLine("Bye!");
+                                return;
+                            }
+                        }
+
+
+                        Console.Write("Write home phone number(option): ");
+                        string homePhoneNumber = Console.ReadLine();
+                        Console.Write("Write mobile phone number(option): ");
+                        string otherPhoneNumber = Console.ReadLine();
+
+                        if (homePhoneNumber != string.Empty && otherPhoneNumber == string.Empty)
+                        {
+                             phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber);
+                        }
+
+                        if (otherPhoneNumber != string.Empty)
+                        {
+                            phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber, otherPhoneNumber);
+                        }
+                        else
+                        {
+                            phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber);
+                        }
 
                         phoneList.Add(phoneBook);
                         break;
 
-                    case "Modifical":
-                        Console.WriteLine("Fisrt name - 1.");
-                        Console.WriteLine("Last name - 2.");
-                        Console.WriteLine("Work number - 3.");
-                        Console.WriteLine("Home number - 4.");
-                        Console.WriteLine("Mobile number - 5.");
-
-                        string modificalCommand = Console.ReadLine();
-
-                        ModificationUserFromPhoneBook<List<PhoneBook>> modification = new ModificationUserFromPhoneBook<List<PhoneBook>>();
-
-
-                        switch (modificalCommand)
-                        {
-                            case "1":
-                                modification.ModificationFirstName(phoneList);
-                                break;
-                            case "2":
-                                modification.ModificationLastName(phoneList);
-                                break;
-                            case "3":
-                                modification.ModificationWorkNumber(phoneList);
-                                break;
-                            case "4":
-                                modification.ModificationHomeNUmber(phoneList);
-                                break;
-                            case "5":
-                                modification.ModificationMobileNUmber(phoneList);
-                                break;
-                        }
-
-                        //  phoneList.Add(phoneBook);
+                    case "2":
+                        ModificationUserFromPhoneBook<List<PhoneBook>> changes = new ModificationUserFromPhoneBook<List<PhoneBook>>();
+                        changes.Changes(phoneList);
                         break;
 
-                    case "Delete user":
+                    case "3":
 
                         break;
-                    case "DeletePhoneNumber":
+                    case "4":
 
                         Console.WriteLine("Write phone number. This is the permanent delete number.");
                         string pernamentDeletePhoneNumber = Console.ReadLine();
@@ -138,51 +138,16 @@
 
                 }
 
-                Console.WriteLine("Add.");
-                Console.WriteLine("Modifical.");
-                Console.WriteLine("RemoveFirstName.");
-                Console.WriteLine("RemoveLastName.");
-                Console.WriteLine("End.");
+                Console.WriteLine("Add - 1."); // ok
+                Console.WriteLine("Change user - 2."); // 2/5
+                Console.WriteLine("Delete user - ?"); // 0/100
+                Console.WriteLine("End - 5");   // 0/100
 
                 endOrCommand = Console.ReadLine();
                 Console.Clear();
             }
 
 
-
-
-
-
-
-            /*
-            List<PhoneBook> phoneList = new List<PhoneBook>()
-            {
-                new PhoneBook{ FirstName = "One", LastName = "One",
-                        PhoneNumbers = new Dictionary<string, string>
-                                    {
-                                        { "work","1234"},
-                                        { "home","5678"}
-                                    }},
-                new PhoneBook{ FirstName = "Two", LastName = "Two",
-                    PhoneNumbers = new Dictionary<string, string>
-                                    {
-                                        { "work","1234"},
-                                        { "home","5678"}
-                                    }},
-                new PhoneBook{ FirstName = "Four", LastName = "Four",
-                    PhoneNumbers = new Dictionary<string, string>
-                                    {
-                                        { "work","1234"},
-                                    }},
-                new PhoneBook{ FirstName = "End", LastName = "Name",
-                    PhoneNumbers = new Dictionary<string, string>
-                                    {
-                                        { "work","1234"},
-                                        { "home","5678"},
-                                        { "mobile","5678"}
-                                    }},
-            };
-            */
 
 
 
