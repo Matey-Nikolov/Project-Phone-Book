@@ -48,13 +48,15 @@
 
 
             Console.WriteLine("Add - 1."); // ok
-            Console.WriteLine("Change user - 2."); // 5/5
-            Console.WriteLine("Delete user - ?"); // 0/100
-            Console.WriteLine("End - 5");   // 0/100
+            Console.WriteLine("Research - 2.");
+            Console.WriteLine("Change user - 3."); // 5/5
+            Console.WriteLine("Sort phone book - 4");
+            Console.WriteLine("Delete user - 5"); // 0/100
+            Console.WriteLine("End - 6.");   // 0/100
 
             string endOrCommand = Console.ReadLine().ToLower();
 
-            while (endOrCommand != "5")
+            while (endOrCommand != "6")
             {
                 string command = endOrCommand;
 
@@ -113,35 +115,32 @@
                         break;
 
                     case "2":
-                        ModificationUserFromPhoneBook<List<PhoneBook>> changes = new ModificationUserFromPhoneBook<List<PhoneBook>>();
-                        changes.Changes(phoneList);
+                        ResearchFromPhoneBook research = new ResearchFromPhoneBook();
+                        research.MainResearch(phoneList);
                         break;
 
                     case "3":
-
+                        ModificationUserFromPhoneBook<List<PhoneBook>> changes = new ModificationUserFromPhoneBook<List<PhoneBook>>();
+                        changes.MainChanges(phoneList);
                         break;
+
                     case "4":
+                        SortAndPrintFromPhoneBook sortPrint = new SortAndPrintFromPhoneBook();
+                        sortPrint.MainSortPrint(ref phoneList);
+                     
+                        break;
+                    case "5":
 
-                        Console.WriteLine("Write phone number. This is the permanent delete number.");
-                        string pernamentDeletePhoneNumber = Console.ReadLine();
-                        Console.WriteLine("Write work/home/mobile.");
-                        string workHomeOrMobile = Console.ReadLine();
-
-                        foreach (var item in phoneList)
-                        {
-                            if (item.PhoneNumbers[workHomeOrMobile] == pernamentDeletePhoneNumber)
-                            {
-                                item.PhoneNumbers[workHomeOrMobile] = null;
-                            }
-                        }
                         break;
 
                 }
 
                 Console.WriteLine("Add - 1."); // ok
-                Console.WriteLine("Change user - 2."); // 2/5
-                Console.WriteLine("Delete user - ?"); // 0/100
-                Console.WriteLine("End - 5");   // 0/100
+                Console.WriteLine("Research - 2.");
+                Console.WriteLine("Change user - 3."); // 5/5
+                Console.WriteLine("Sort phone book - 4");
+                Console.WriteLine("Delete user - 5"); // 0/100
+                Console.WriteLine("End - 6.");   // 0/100
 
                 endOrCommand = Console.ReadLine();
                 Console.Clear();

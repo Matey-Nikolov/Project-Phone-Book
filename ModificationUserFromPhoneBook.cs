@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Project_PhoneBook
 {
-    public class ModificationUserFromPhoneBook<T> /*: IEnumerable<T> // <T> */
+    public class ModificationUserFromPhoneBook<T>
     {
-        public void Changes(List<PhoneBook> phoneList)
+        public void MainChanges(List<PhoneBook> phoneList)
         {
             Console.Clear();
             Console.WriteLine("We will print all users.");
@@ -224,7 +224,7 @@ namespace Project_PhoneBook
                         Console.Write("Enter the new name: ");
                         string newName = Console.ReadLine();
 
-                        Console.WriteLine($"Old name: {phoneList[j].FirstName} -> new name: {lastName}");
+                        Console.WriteLine($"Old name: {phoneList[j].LastName} -> new name: {lastName}");
                         Console.WriteLine();
                         phoneList[j].LastName = newName;
                         break;
