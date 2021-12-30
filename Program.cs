@@ -47,12 +47,12 @@
             }
 
 
-            Console.WriteLine("Add - 1."); // ok
-            Console.WriteLine("Research - 2.");
+            Console.WriteLine("Add - 1."); // 50%
+            Console.WriteLine("Research - 2."); // 10%
             Console.WriteLine("Change user - 3."); // 5/5
-            Console.WriteLine("Sort phone book - 4");
+            Console.WriteLine("Sort phone book - 4"); // 2/3
             Console.WriteLine("Delete user - 5"); // 0/100
-            Console.WriteLine("End - 6.");   // 0/100
+            Console.WriteLine("End - 6.");   // 100 %
 
             string endOrCommand = Console.ReadLine().ToLower();
 
@@ -126,8 +126,7 @@
 
                     case "4":
                         SortAndPrintFromPhoneBook sortPrint = new SortAndPrintFromPhoneBook();
-                        sortPrint.MainSortPrint(ref phoneList);
-                     
+                        sortPrint.MainSortPrint(phoneList);
                         break;
                     case "5":
 
@@ -135,23 +134,16 @@
 
                 }
 
-                Console.WriteLine("Add - 1."); // ok
-                Console.WriteLine("Research - 2.");
+                Console.WriteLine("Add - 1."); // 50%
+                Console.WriteLine("Research - 2."); // 10%
                 Console.WriteLine("Change user - 3."); // 5/5
-                Console.WriteLine("Sort phone book - 4");
+                Console.WriteLine("Sort phone book - 4"); // 2/3
                 Console.WriteLine("Delete user - 5"); // 0/100
-                Console.WriteLine("End - 6.");   // 0/100
+                Console.WriteLine("End - 6.");   // 100 %
 
                 endOrCommand = Console.ReadLine();
                 Console.Clear();
             }
-
-
-
-
-
-
-
 
             // 
             // Serialize PhoneBook List to File in JSON Format (JSON WRITE to FILE)
