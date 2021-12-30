@@ -10,6 +10,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.IO;
+    using System.Text.RegularExpressions;
 
     public class Program
     {
@@ -47,11 +48,11 @@
             }
 
 
-            Console.WriteLine("Add - 1."); // 50%
+            Console.WriteLine("Add - 1."); // 90%
             Console.WriteLine("Research - 2."); // 10%
             Console.WriteLine("Change user - 3."); // 5/5
             Console.WriteLine("Sort phone book - 4"); // 2/3
-            Console.WriteLine("Delete user - 5"); // 0/100
+            Console.WriteLine("Delete - 5"); // 0/100
             Console.WriteLine("End - 6.");   // 100 %
 
             string endOrCommand = Console.ReadLine().ToLower();
@@ -63,55 +64,12 @@
                 switch (command)
                 {
                     case "1":
-                        PhoneBook phoneBook = new PhoneBook();
-
-                        Console.Write("Write first name: ");
-                        string firstName = Console.ReadLine();
-                        Console.Write("Write last name: ");
-                        string lastName = Console.ReadLine();
-                        Console.Write("Write work phone number: ");
-                        string workPhoneNumber = Console.ReadLine();
-
-                        if (firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty)
+                        Add(phoneList);
+                        using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
                         {
-                            Console.Clear();
-                            Console.WriteLine("You must write first, last name and work phone number!");
-
-                            Console.Write("Write first name: ");
-                            firstName = Console.ReadLine();
-                            Console.Write("Write last name: ");
-                            lastName = Console.ReadLine();
-                            Console.Write("Write work phone number: ");
-                            workPhoneNumber = Console.ReadLine();
-
-                            if (firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty)
-                            {
-                                Console.WriteLine("Bye!");
-                                return;
-                            }
+                            JsonSerializer serializer = new JsonSerializer();
+                            serializer.Serialize(file, phoneList);
                         }
-
-
-                        Console.Write("Write home phone number(option): ");
-                        string homePhoneNumber = Console.ReadLine();
-                        Console.Write("Write mobile phone number(option): ");
-                        string otherPhoneNumber = Console.ReadLine();
-
-                        if (homePhoneNumber != string.Empty && otherPhoneNumber == string.Empty)
-                        {
-                             phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber);
-                        }
-
-                        if (otherPhoneNumber != string.Empty)
-                        {
-                            phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber, otherPhoneNumber);
-                        }
-                        else
-                        {
-                            phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber);
-                        }
-
-                        phoneList.Add(phoneBook);
                         break;
 
                     case "2":
@@ -134,11 +92,11 @@
 
                 }
 
-                Console.WriteLine("Add - 1."); // 50%
+                Console.WriteLine("Add - 1."); // 90%
                 Console.WriteLine("Research - 2."); // 10%
                 Console.WriteLine("Change user - 3."); // 5/5
                 Console.WriteLine("Sort phone book - 4"); // 2/3
-                Console.WriteLine("Delete user - 5"); // 0/100
+                Console.WriteLine("Delete - 5"); // 0/100
                 Console.WriteLine("End - 6.");   // 100 %
 
                 endOrCommand = Console.ReadLine();
@@ -160,12 +118,12 @@
             // using(<stream object>) { … } стр. 648
             //
             //
-
-            using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, phoneList);
-            }
+            //
+            //using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
+            // {
+            //     JsonSerializer serializer = new JsonSerializer();
+            //     serializer.Serialize(file, phoneList);
+            //  }
 
             //
             // Deserialize PhoneBook List from a file in JSON Format (JSON READ from FILE)
@@ -173,7 +131,7 @@
             // https://www.newtonsoft.com/json/help/html/DeserializeWithJsonSerializerFromFile.htm
             // 
 
-          //  List<PhoneBook> PhoneJsonList;
+            //  List<PhoneBook> PhoneJsonList;
 
             using (StreamReader file = File.OpenText(@"..\..\..\phoneList.json"))
             {
@@ -184,6 +142,104 @@
             // Test Console Print
             string json = JsonConvert.SerializeObject(PhoneJsonList, Formatting.Indented);
             Console.WriteLine(json);
+        }
+
+        public static void Add(List<PhoneBook> phoneList)
+        {
+            PhoneBook phoneBook = new PhoneBook();
+
+            Console.Write("Write first name: ");
+            string firstName = Console.ReadLine();
+
+            Console.Write("Write last name: ");
+            string lastName = Console.ReadLine();
+
+            Console.Write("Write work phone number +359 ** *** ****: ");
+            string workPhoneNumber = Console.ReadLine();
+
+
+            if ((firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && workPhoneNumber == string.Empty))
+            {
+                Console.Clear();
+                Console.WriteLine("You must write first, last name and work phone number!");
+
+                Console.Write("Write first name: ");
+                firstName = Console.ReadLine();
+
+                Console.Write("Write last name: ");
+                lastName = Console.ReadLine();
+
+                Console.Write("Write work phone number +359 ** *** ****:: ");
+                workPhoneNumber = Console.ReadLine();
+                workPhoneNumber = Validation(workPhoneNumber);
+
+                if (firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty)
+                {
+                    Console.WriteLine("Bye!");
+                    return;
+                }
+            }
+
+            workPhoneNumber = Validation(workPhoneNumber);
+
+            Console.Write("Write home phone number +359 ** *** **** (option): ");
+            string homePhoneNumber = Console.ReadLine();
+            homePhoneNumber = Validation(homePhoneNumber);
+            
+            Console.Write("Write mobile phone number +359 ** *** **** (option): ");
+            string otherPhoneNumber = Console.ReadLine();
+            otherPhoneNumber = Validation(otherPhoneNumber);
+
+
+            if (homePhoneNumber != string.Empty && otherPhoneNumber == string.Empty)
+            {
+                phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber);
+            }
+
+            if (otherPhoneNumber != string.Empty)
+            {
+                phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber, otherPhoneNumber);
+            }
+            else
+            {
+                phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber);
+            }
+
+            phoneList.Add(phoneBook);
+        }
+
+        static public string Validation(string phoneNumber)
+        {
+            string pattern = @"(\+359) ?[0-9]{2} ?[0-9]{3} ?[0-9]{4}";
+
+            if (phoneNumber != string.Empty)
+            {
+                Regex rg = new Regex(pattern);
+                Match matchPhoneNumber = rg.Match(phoneNumber);
+
+                string tryAgainPhoneNumber = "";
+
+                if (!matchPhoneNumber.Success)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Invalid phone number!");
+                    Console.Write("Try again +359 ** *** ****: ");
+
+                    tryAgainPhoneNumber = Console.ReadLine();
+
+                    matchPhoneNumber = rg.Match(tryAgainPhoneNumber);
+
+                    if (!matchPhoneNumber.Success)
+                    {
+                        Console.WriteLine("Bye!");
+                        return "";
+                    }
+                    else
+                        return tryAgainPhoneNumber;
+                }
+            }
+
+            return phoneNumber;
         }
     }
 }
