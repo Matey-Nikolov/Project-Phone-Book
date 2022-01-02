@@ -71,25 +71,25 @@ namespace Project_PhoneBook
             string lastName = Console.ReadLine();
 
             Console.Write("Enter first phone number* +359 ** *** ****: ");
-            string workPhoneNumber = Console.ReadLine();
+            string firstPhoneNumber = Console.ReadLine();
 
 
-            if ((firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && workPhoneNumber == string.Empty))
+            if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty))
             {
                 Console.Clear();
                 Console.WriteLine("You must write first, last name and work phone number!");
 
-                Console.Write("Write first name: ");
+                Console.Write("Enter first name: ");
                 firstName = Console.ReadLine();
 
-                Console.Write("Write last name: ");
+                Console.Write("Enter last name: ");
                 lastName = Console.ReadLine();
 
-                Console.Write("Write work phone number +359 ** *** ****:: ");
-                workPhoneNumber = Console.ReadLine();
+                Console.Write("Enter fisrt phone number +359 ** *** ****: ");
+                firstPhoneNumber = Console.ReadLine();
                 //  workPhoneNumber = Validation(workPhoneNumber);
 
-                if (firstName == string.Empty && lastName == string.Empty && workPhoneNumber == string.Empty)
+                if (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty)
                 {
                     Console.WriteLine("Bye!");
                 }
@@ -98,26 +98,26 @@ namespace Project_PhoneBook
             //  workPhoneNumber = Validation(workPhoneNumber);
 
             Console.Write("Enter second phone number +359 ** *** **** (option): ");
-            string homePhoneNumber = Console.ReadLine();
+            string secondPhoneNumber = Console.ReadLine();
             //  homePhoneNumber = Validation(homePhoneNumber);
 
             Console.Write("Enter third phone number +359 ** *** **** (option): ");
-            string otherPhoneNumber = Console.ReadLine();
+            string thirdPhoneNumber = Console.ReadLine();
             //   otherPhoneNumber = Validation(otherPhoneNumber);
 
 
-            if (homePhoneNumber != string.Empty && otherPhoneNumber == string.Empty)
+            if (secondPhoneNumber != string.Empty && thirdPhoneNumber == string.Empty)
             {
-                phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber);
+                phoneBook = new PhoneBook(firstName, lastName, firstPhoneNumber, secondPhoneNumber);
             }
 
-            if (otherPhoneNumber != string.Empty)
+            if (thirdPhoneNumber != string.Empty)
             {
-                phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber, homePhoneNumber, otherPhoneNumber);
+                phoneBook = new PhoneBook(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
             }
             else
             {
-                phoneBook = new PhoneBook(firstName, lastName, workPhoneNumber);
+                phoneBook = new PhoneBook(firstName, lastName, firstPhoneNumber);
             }
 
             phoneList.Add(phoneBook);
@@ -161,52 +161,54 @@ namespace Project_PhoneBook
         }
         */
 
-        public void MainPrintAllPhoneList(List<PhoneBook> phoneList)
+        public int MainPrintAllPhoneList(List<PhoneBook> phoneList)
         {
-            // 
-            // https://stackoverflow.com/questions/856845/how-to-best-way-to-draw-table-in-console-app-c
             //
-            //
-            // https://www.csharp-console-examples.com/basic/c-datatable-examples/
+            // https://www.csharp-examples.net/align-string-with-spaces/
             //
 
             int count = 1;
+         // Console.Clear();
+            Console.WriteLine("--------------------------All user from your phone bok---------------------------------");
+            Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var AllItem in phoneList)
             {
-                using (DataTable dt = new DataTable("Test"))
-                {
-                    dt.Columns.Add("Number", typeof(int));
-                    dt.Columns.Add("FirstName", typeof(string));
-                    dt.Columns.Add("LastName", typeof(string));
-                    dt.Columns.Add("First number", typeof(string));
-                    dt.Columns.Add("Second number", typeof(string));
-                    dt.Columns.Add("Third number", typeof(string));
+                string firstName = AllItem.FirstName;
+                string lastName = AllItem.LastName;
+                string firstNumber = AllItem.PhoneNumbers["first"];
+                string secondNumber = "";
+                string thirdNumber = "";
 
-                    if (AllItem.PhoneNumbers.Count == 1)
-                    {
-                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"]); // first - work
+                if (AllItem.PhoneNumbers.ContainsKey("second"))
+                    secondNumber = AllItem.PhoneNumbers["second"];
+                else if (AllItem.PhoneNumbers.ContainsKey("third"))
+                    thirdNumber = AllItem.PhoneNumbers["third"];
 
-                    }
-                    else if (AllItem.PhoneNumbers.Count == 2 && AllItem.PhoneNumbers["third"].Contains(string.Empty))
-                    {
-                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"], AllItem.PhoneNumbers["second"]);
-                    }
-                    else if (AllItem.PhoneNumbers.Count == 2 && AllItem.PhoneNumbers["second"].Contains(string.Empty))
-                    {
-                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"], AllItem.PhoneNumbers["third"]);
-                    }
-                    else
-                    {
-                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"], AllItem.PhoneNumbers["second"], AllItem.PhoneNumbers["third"]);
-                    }
-
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        Console.WriteLine("Number: {0}\tFirst Name: {1}\t Last Name: {2}\t Fist number: {3}\t Second number: {4}\t Third number: {5}", dr[0], dr[1], dr[2], dr[3], dr[4], dr[5]);
-                    }
-                }
+                Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
                 count++;
             }
+            Console.WriteLine("---------------------------------------------------------------------------------------");
+            Console.WriteLine();
+            return count;
+        }
+
+        public void RemoveFromPhoneBook(List<PhoneBook> phoneList)
+        {
+            if (phoneList.Count == 0)
+            {
+                Console.WriteLine("Empty phone book!");
+                return;
+            }
+
+            Console.Clear();
+            Console.WriteLine("Print all users from your phone bok.");
+
+            MainPrintAllPhoneList(phoneList);
+
+            Console.Write("Choose number you want to delete from your phone book: ");
+            int number = int.Parse(Console.ReadLine());
+
+            phoneList.RemoveAt(number);
         }
     }
 }

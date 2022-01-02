@@ -52,7 +52,7 @@
                         main.MainPrintAllPhoneList(phoneList);
                         break;
                     case "6":
-
+                        main.RemoveFromPhoneBook(phoneList);
                         break;
 
                 }

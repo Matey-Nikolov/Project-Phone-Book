@@ -19,7 +19,7 @@
             switch (number)
             {
                 case "1":
-                    SearchByName(phoneList);  // Not work
+                    SearchByName(phoneList);  // Work
                     break;
                 case "2":
                     SearchByPhoneNumber(phoneList); // Work
