@@ -49,12 +49,12 @@ namespace Project_PhoneBook
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine("Phone Book Operations:");
-            Console.WriteLine("1 - Add"); // 90%
-            Console.WriteLine("2 - Search"); // 10%
-            Console.WriteLine("3 - Edit user"); // 5/5
+            Console.WriteLine("1 - Add"); // 100%
+            Console.WriteLine("2 - Search"); // 100%
+            Console.WriteLine("3 - Edit user"); // 0/5
             Console.WriteLine("4 - Sort phone book"); // 2/3
-            Console.WriteLine("5 - List phone book"); // 0/0
-            Console.WriteLine("6 - Delete"); // 0/100
+            Console.WriteLine("5 - List phone book"); // 100%
+            Console.WriteLine("6 - Delete"); // 100%
             Console.WriteLine("0 - End");   // 100 %
             Console.Write("Please enter your choise: ");
         }

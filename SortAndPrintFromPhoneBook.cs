@@ -16,9 +16,9 @@
         public void MainSortPrint(List<PhoneBook> phoneList)
         {
             Console.Clear();
-            Console.WriteLine("Sort by first name then by last name - 1."); // 2/2
-            Console.WriteLine("Sort by phone number - 2."); // 1/3
-
+            Console.WriteLine("1 - Sort by name"); // 2/2
+            Console.WriteLine("2 - Sort by phone number"); // 1/3
+            Console.Write("Please enter your choise: ");
             string number = Console.ReadLine();
 
             switch (number)
@@ -31,7 +31,7 @@
                     break;
                 default:
                     Console.Clear();
-                    Console.WriteLine("Invalid numbers!");
+                    Console.WriteLine("Invalid operation!");
                     Console.WriteLine();
                     break;
             }
@@ -40,10 +40,11 @@
         static private void SortByName(List<PhoneBook> phoneList)
         {
             Console.Clear();
-            Console.WriteLine("Descending order - 1.");
-            Console.WriteLine("Ascending order - 2.");
-
+            Console.WriteLine("1 - Descending order");
+            Console.WriteLine("2 - Ascending order");
+            Console.Write("Please enter your choise: ");
             string number = Console.ReadLine();
+
             List<PhoneBook> newSortPhoneList = new List<PhoneBook>();
 
             if (number == "1")
@@ -51,12 +52,12 @@
                 foreach (var all in phoneList.OrderBy(x => x.FirstName).ThenBy(x => x.LastName))
                 {
                     Console.WriteLine($"{all.FirstName} {all.LastName}");
-                    Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
+                    Console.WriteLine($"    First phone number: {all.PhoneNumbers["first"]}");
 
-                    if (all.PhoneNumbers.ContainsKey("home"))
-                        Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
-                    else if (all.PhoneNumbers.ContainsKey("other"))
-                        Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
+                    if (all.PhoneNumbers.ContainsKey("second"))
+                        Console.WriteLine($"    Second phone number: {all.PhoneNumbers["second"]}");
+                    else if (all.PhoneNumbers.ContainsKey("third"))
+                        Console.WriteLine($"    Third phone number: {all.PhoneNumbers["third"]}");
 
                     newSortPhoneList.Add(all);
                 }
@@ -66,22 +67,31 @@
                 foreach (var all in phoneList.OrderByDescending(x => x.FirstName).ThenBy(x => x.LastName))
                 {
                     Console.WriteLine($"{all.FirstName} {all.LastName}");
-                    Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
+                    Console.WriteLine($"    First phone number: {all.PhoneNumbers["first"]}");
 
-                    if (all.PhoneNumbers.ContainsKey("home"))
-                        Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
-                    else if (all.PhoneNumbers.ContainsKey("other"))
-                        Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
+                    if (all.PhoneNumbers.ContainsKey("second"))
+                        Console.WriteLine($"    Second phone number: {all.PhoneNumbers["second"]}");
+                    else if (all.PhoneNumbers.ContainsKey("third"))
+                        Console.WriteLine($"    Third phone number: {all.PhoneNumbers["third"]}");
 
                     newSortPhoneList.Add(all);
                 }
             }
             else
             {
+                
+                Console.Clear();
                 Console.WriteLine("Invalid number!");
-                return;
+                newSortPhoneList = phoneList;
+                Console.WriteLine();
+                /*
+                Console.WriteLine("1 - Descending order");
+                Console.WriteLine("2 - Ascending order");
+                Console.Write("Please enter your choise: ");
+                number = Console.ReadLine();
+                */
             }
-
+            Console.WriteLine();
 
             using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
             {
@@ -100,13 +110,14 @@
             foreach (var all in phoneList.OrderBy(x => x.PhoneNumbers["first"]))
             {
                 Console.WriteLine($"{all.FirstName} {all.LastName}");
-                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
+                Console.WriteLine($"    First phone number: {all.PhoneNumbers["first"]}");
 
-                if (all.PhoneNumbers.ContainsKey("home"))
-                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
-                else if (all.PhoneNumbers.ContainsKey("other"))
-                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
+                if (all.PhoneNumbers.ContainsKey("second"))
+                    Console.WriteLine($"    Second phone number: {all.PhoneNumbers["second"]}");
+                else if (all.PhoneNumbers.ContainsKey("third"))
+                    Console.WriteLine($"    Third phone number: {all.PhoneNumbers["third"]}");
             }
+            Console.WriteLine();
         }
 
 
