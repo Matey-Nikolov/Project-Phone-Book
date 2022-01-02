@@ -14,36 +14,36 @@
 
         public PhoneBook() { }
 
-        public PhoneBook(string FirstName, string LastName, string work)
+        public PhoneBook(string FirstName, string LastName, string first)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
             PhoneNumbers = new Dictionary<string, string>
                                 {
-                                    { "work",work}
+                                    { "first", first}
                                 };
         }
 
-        public PhoneBook(string FirstName, string LastName, string work, string home)
+        public PhoneBook(string FirstName, string LastName, string fisrt, string second)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
             PhoneNumbers = new Dictionary<string, string>
                                 {
-                                    { "work",work},
-                                    { "home",home}
+                                    { "first", fisrt},
+                                    { "home", second}
                                 };
         }
 
-        public PhoneBook(string FirstName, string LastName, string work, string home, string other)
+        public PhoneBook(string FirstName, string LastName, string fisrt, string second, string third)
         {
             this.FirstName = FirstName;
             this.LastName = LastName;
             PhoneNumbers = new Dictionary<string, string>
                                 {
-                                    { "work",work},
-                                    { "home",home},
-                                    { "other",other}
+                                    { "first", fisrt},
+                                    { "second", second},
+                                    { "third", third}
                                 };
         }
 
