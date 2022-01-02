@@ -20,11 +20,11 @@ namespace Project_PhoneBook
 
             Console.WriteLine();
             
-            Console.WriteLine("Fisrt name - 1.");
-            Console.WriteLine("Last name - 2.");
-            Console.WriteLine("Work number - 3.");
-            Console.WriteLine("Home number - 4.");
-            Console.WriteLine("Other number - 5.");
+            Console.WriteLine("1 - Fisrt name");
+            Console.WriteLine("2 - Last name");
+            Console.WriteLine("3 - Work number");
+            Console.WriteLine("4 - Home number");
+            Console.WriteLine("5 - Other number");
 
            
             Console.Write("Enter a number with the corresponding change you want to make: ");
@@ -63,12 +63,12 @@ namespace Project_PhoneBook
             foreach (var all in phoneList)
             {
                 Console.WriteLine($"{all.FirstName} {all.LastName}");
-                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
+                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
 
                 if (all.PhoneNumbers.ContainsKey("home"))
-                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
+                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
                 else if (all.PhoneNumbers.ContainsKey("other"))
-                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
+                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
             }
         }
 
@@ -85,7 +85,7 @@ namespace Project_PhoneBook
                     Console.WriteLine();
                     foreach (var item in foundDuplicateNames)
                     {
-                        Console.WriteLine($"{count} -> {item.FirstName} - phone number {item.PhoneNumbers["work"]}");
+                        Console.WriteLine($"{count} -> {item.FirstName} - phone number {item.PhoneNumbers["first"]}");
                         count++;
                     }
 
@@ -123,7 +123,7 @@ namespace Project_PhoneBook
                     Console.WriteLine();
                     foreach (var item in foundDuplicateNames)
                     {
-                        Console.WriteLine($"{count} -> {item.LastName} - phone number {item.PhoneNumbers["work"]}");
+                        Console.WriteLine($"{count} -> {item.LastName} - phone number {item.PhoneNumbers["first"]}");
                         count++;
                     }
 
@@ -240,14 +240,14 @@ namespace Project_PhoneBook
 
             foreach (var phoneNumber in phoneList)
             {
-                if (phoneNumber.PhoneNumbers["work"] == workPhoneNumber)
+                if (phoneNumber.PhoneNumbers["first"] == workPhoneNumber)
                 {
                     Console.Write("Enter the new phone number: ");
                     string newPhoneNumber = Console.ReadLine();
 
-                    Console.Write($"Old phone number: {phoneNumber.PhoneNumbers["work"]} -> new phone number {newPhoneNumber}");
+                    Console.Write($"Old phone number: {phoneNumber.PhoneNumbers["first"]} -> new phone number {newPhoneNumber}");
                     Console.WriteLine();
-                    phoneNumber.PhoneNumbers["work"] = newPhoneNumber;
+                    phoneNumber.PhoneNumbers["first"] = newPhoneNumber;
                     return;
                 }
             }
@@ -262,14 +262,14 @@ namespace Project_PhoneBook
 
             foreach (var phoneNumber in phoneList)
             {
-                if (phoneNumber.PhoneNumbers["home"] == workPhoneNumber)
+                if (phoneNumber.PhoneNumbers["second"] == workPhoneNumber)
                 {
                     Console.Write("Enter the new phone number: ");
                     string newPhoneNumber = Console.ReadLine();
 
-                    Console.Write($"Old phone number: {phoneNumber.PhoneNumbers["home"]} -> new phone number {newPhoneNumber}");
+                    Console.Write($"Old phone number: {phoneNumber.PhoneNumbers["second"]} -> new phone number {newPhoneNumber}");
                     Console.WriteLine();
-                    phoneNumber.PhoneNumbers["home"] = newPhoneNumber;
+                    phoneNumber.PhoneNumbers["second"] = newPhoneNumber;
                     return;
                 }
             }
@@ -283,14 +283,14 @@ namespace Project_PhoneBook
 
             foreach (var phoneNumber in phoneList)
             {
-                if (phoneNumber.PhoneNumbers["other"] == workPhoneNumber)
+                if (phoneNumber.PhoneNumbers["third"] == workPhoneNumber)
                 {
                     Console.Write("Enter the new phone number: ");
                     string newPhoneNumber = Console.ReadLine();
 
-                    Console.Write($"Old phone number: {phoneNumber.PhoneNumbers["other"]} -> new phone number {newPhoneNumber}");
+                    Console.Write($"Old phone number: {phoneNumber.PhoneNumbers["third"]} -> new phone number {newPhoneNumber}");
                     Console.WriteLine();
-                    phoneNumber.PhoneNumbers["other"] = newPhoneNumber;
+                    phoneNumber.PhoneNumbers["third"] = newPhoneNumber;
                     return;
                 }
             }

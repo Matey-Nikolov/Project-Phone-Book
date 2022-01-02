@@ -35,18 +35,18 @@
                         break;
 
                     case "2":
-                        SearchFromPhoneBook search = new SearchFromPhoneBook();
-                        search.MainResearch(phoneList);
+                        SearchFromPhoneBook searchList = new SearchFromPhoneBook();
+                        searchList.MainResearch(phoneList);
                         break;
 
                     case "3":
-                        ModificationUserFromPhoneBook<List<PhoneBook>> changes = new ModificationUserFromPhoneBook<List<PhoneBook>>();
-                        changes.MainChanges(phoneList);
+                        ModificationUserFromPhoneBook<List<PhoneBook>> editList = new ModificationUserFromPhoneBook<List<PhoneBook>>();
+                        editList.MainChanges(phoneList);
                         break;
 
                     case "4":
-                        SortAndPrintFromPhoneBook sortPrint = new SortAndPrintFromPhoneBook();
-                        sortPrint.MainSortPrint(phoneList);
+                        SortAndPrintFromPhoneBook sortList = new SortAndPrintFromPhoneBook();
+                        sortList.MainSortPrint(phoneList);
                         break;
                     case "5":
                         main.MainPrintAllPhoneList(phoneList);

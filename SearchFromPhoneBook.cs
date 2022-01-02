@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace Project_PhoneBook
+﻿namespace Project_PhoneBook
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text.RegularExpressions;
+
+
     public class SearchFromPhoneBook 
     {
         public void MainResearch(List<PhoneBook> phoneList)
@@ -22,8 +19,8 @@ namespace Project_PhoneBook
             switch (number)
             {
                 case "1":
-                    break;
                     SearchByName(phoneList);  // Not work
+                    break;
                 case "2":
                     SearchByPhoneNumber(phoneList); // Work
                     break;
@@ -34,25 +31,12 @@ namespace Project_PhoneBook
                     break;
             }
         }
-
-        static private void SearchByName(List<PhoneBook> phoneList)
-        {
-            Console.Write("Enter a full or part of name: ");
-
-            string researchName = Console.ReadLine();
-
-            string pattern = researchName;
-
-            Regex rg = new Regex(pattern);
-
-        }
-
         static private void SearchByPhoneNumber(List<PhoneBook> phoneList)
         {
+            Console.WriteLine();
+            Console.Write("Enter a full or part of phone number: ");
 
-            Console.Write("Enter a full or part of phone number - ** *** ****: ");
-
-            string researchPhoneNumber = Console.ReadLine();                // Май не се ползва
+            string researchPhoneNumber = Console.ReadLine();
 
             string pattern = researchPhoneNumber;
 
@@ -70,6 +54,33 @@ namespace Project_PhoneBook
                     Console.WriteLine($"{phoneNumber.FirstName} {phoneNumber.LastName} -> {phoneNumber.PhoneNumbers["first"]}");
                 }
             }
+            Console.WriteLine();
+        }
+
+        private void SearchByName(List<PhoneBook> phoneList)
+        {
+            Console.WriteLine();
+            Console.Write("Enter a full or part of name: ");
+
+            string researchName = Console.ReadLine();
+
+            string pattern = researchName;
+
+            Regex rg = new Regex(pattern);
+
+
+            foreach (var users in phoneList)
+            {
+                string user = users.FirstName + " " + users.LastName;
+
+                bool match = rg.IsMatch(user);
+
+                if (match)
+                {
+                    Console.WriteLine($"{users.FirstName} {users.LastName} -> {users.PhoneNumbers["first"]}");
+                }
+            }
+            Console.WriteLine();
         }
     }
 }

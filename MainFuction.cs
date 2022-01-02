@@ -97,11 +97,11 @@ namespace Project_PhoneBook
 
             //  workPhoneNumber = Validation(workPhoneNumber);
 
-            Console.Write("Enter home phone number +359 ** *** **** (option): ");
+            Console.Write("Enter second phone number +359 ** *** **** (option): ");
             string homePhoneNumber = Console.ReadLine();
             //  homePhoneNumber = Validation(homePhoneNumber);
 
-            Console.Write("Enter mobile phone number +359 ** *** **** (option): ");
+            Console.Write("Enter third phone number +359 ** *** **** (option): ");
             string otherPhoneNumber = Console.ReadLine();
             //   otherPhoneNumber = Validation(otherPhoneNumber);
 
@@ -170,34 +170,41 @@ namespace Project_PhoneBook
             // https://www.csharp-console-examples.com/basic/c-datatable-examples/
             //
 
-
+            int count = 1;
             foreach (var AllItem in phoneList)
             {
-                int count = 1;
-
                 using (DataTable dt = new DataTable("Test"))
                 {
-
-                    dt.TableName = "Users";
-
                     dt.Columns.Add("Number", typeof(int));
                     dt.Columns.Add("FirstName", typeof(string));
                     dt.Columns.Add("LastName", typeof(string));
                     dt.Columns.Add("First number", typeof(string));
+                    dt.Columns.Add("Second number", typeof(string));
+                    dt.Columns.Add("Third number", typeof(string));
 
-                    dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["work"]); // first
-
-                    if (AllItem.PhoneNumbers["home"]== string.Empty && AllItem.PhoneNumbers["home"] == string.Empty)
+                    if (AllItem.PhoneNumbers.Count == 1)
                     {
-                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["work"]); // first
+                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"]); // first - work
+
+                    }
+                    else if (AllItem.PhoneNumbers.Count == 2 && AllItem.PhoneNumbers["third"].Contains(string.Empty))
+                    {
+                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"], AllItem.PhoneNumbers["second"]);
+                    }
+                    else if (AllItem.PhoneNumbers.Count == 2 && AllItem.PhoneNumbers["second"].Contains(string.Empty))
+                    {
+                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"], AllItem.PhoneNumbers["third"]);
+                    }
+                    else
+                    {
+                        dt.Rows.Add(count, AllItem.FirstName, AllItem.LastName, AllItem.PhoneNumbers["first"], AllItem.PhoneNumbers["second"], AllItem.PhoneNumbers["third"]);
                     }
 
                     foreach (DataRow dr in dt.Rows)
                     {
-                        Console.WriteLine("ID: {0}\tFirst Name: {1} \t Last Name: {2} \t fist number: {3}", dr[0], dr[1], dr[2], dr[3]);
+                        Console.WriteLine("Number: {0}\tFirst Name: {1}\t Last Name: {2}\t Fist number: {3}\t Second number: {4}\t Third number: {5}", dr[0], dr[1], dr[2], dr[3], dr[4], dr[5]);
                     }
                 }
-
                 count++;
             }
         }

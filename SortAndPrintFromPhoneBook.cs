@@ -51,12 +51,12 @@
                 foreach (var all in phoneList.OrderBy(x => x.FirstName).ThenBy(x => x.LastName))
                 {
                     Console.WriteLine($"{all.FirstName} {all.LastName}");
-                    Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
+                    Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
 
                     if (all.PhoneNumbers.ContainsKey("home"))
-                        Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
+                        Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
                     else if (all.PhoneNumbers.ContainsKey("other"))
-                        Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
+                        Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
 
                     newSortPhoneList.Add(all);
                 }
@@ -66,12 +66,12 @@
                 foreach (var all in phoneList.OrderByDescending(x => x.FirstName).ThenBy(x => x.LastName))
                 {
                     Console.WriteLine($"{all.FirstName} {all.LastName}");
-                    Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
+                    Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
 
                     if (all.PhoneNumbers.ContainsKey("home"))
-                        Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
+                        Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
                     else if (all.PhoneNumbers.ContainsKey("other"))
-                        Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
+                        Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
 
                     newSortPhoneList.Add(all);
                 }
@@ -93,83 +93,24 @@
         static private void SortByPhoneNumber(List<PhoneBook> phoneList)
         {
             Console.Clear();
-            Console.WriteLine("Sort by work phone number.");
-          //  Console.WriteLine("Sort by home - 2.");
-         //   Console.WriteLine("Sort by other - 3.");
+            Console.WriteLine("Sort by fisrt phone number.");
 
-          //  string number = Console.ReadLine();
             List<PhoneBook> newSortPhoneNumberList = new List<PhoneBook>();
-            /*
-            switch (number)
-            {
-                case "1":
-                    SortByWorkNumber(phoneList);
-                    break;
-                case "2":
-                    SortByHomeNumber(phoneList);
-                    break;
-                case "3":
-                    SortByOtherNumber(phoneList);
-                    break;
-            }
-            */
-            foreach (var all in phoneList.OrderBy(x => x.PhoneNumbers["work"]))
+
+            foreach (var all in phoneList.OrderBy(x => x.PhoneNumbers["first"]))
             {
                 Console.WriteLine($"{all.FirstName} {all.LastName}");
-                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
+                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["first"]}");
 
                 if (all.PhoneNumbers.ContainsKey("home"))
-                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
+                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["second"]}");
                 else if (all.PhoneNumbers.ContainsKey("other"))
-                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
+                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["third"]}");
             }
         }
 
 
         /*
-        static private void SortByWorkNumber(List<PhoneBook> phoneList)
-        {
-            foreach (var all in phoneList.OrderBy(x => x.PhoneNumbers["work"]))
-            {
-                Console.WriteLine($"{all.FirstName} {all.LastName}");
-                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
-
-                if (all.PhoneNumbers.ContainsKey("home"))
-                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
-                else if (all.PhoneNumbers.ContainsKey("other"))
-                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
-            }
-        }
-
-        static private void SortByHomeNumber(List<PhoneBook> phoneList)
-        {
-            foreach (var all in phoneList.OrderBy(x => x.PhoneNumbers["home"]))
-            {
-                Console.WriteLine($"{all.FirstName} {all.LastName}");
-                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
-
-                if (all.PhoneNumbers.ContainsKey("home"))
-                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
-                else if (all.PhoneNumbers.ContainsKey("other"))
-                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
-            }
-
-        }
-
-        static private void SortByOtherNumber(List<PhoneBook> phoneList)
-        {
-            foreach (var all in phoneList.OrderBy(x => x.PhoneNumbers["other"]))
-            {
-                Console.WriteLine($"{all.FirstName} {all.LastName}");
-                Console.WriteLine($"    Work phone number: {all.PhoneNumbers["work"]}");
-
-                if (all.PhoneNumbers.ContainsKey("home"))
-                    Console.WriteLine($"    Home phone number: {all.PhoneNumbers["home"]}");
-                else if (all.PhoneNumbers.ContainsKey("other"))
-                    Console.WriteLine($"    Other phone number: {all.PhoneNumbers["other"]}");
-            }
-        }
-
         
         public IEnumerator<PhoneBook> GetEnumerator()
         {
