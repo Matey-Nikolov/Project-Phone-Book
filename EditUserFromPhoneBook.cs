@@ -17,6 +17,12 @@ namespace Project_PhoneBook
             MainFuction mainPrintAll = new MainFuction();
             int count =  mainPrintAll.MainPrintAllPhoneList(phoneList);
 
+            if (count == 0)
+            {
+                Console.WriteLine();
+                return;
+            }
+
             Console.Write("Enter the number of the user you want to edit: ");
             int editNumber = int.Parse(Console.ReadLine());
 

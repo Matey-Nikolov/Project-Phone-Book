@@ -51,8 +51,8 @@ namespace Project_PhoneBook
             Console.WriteLine("Phone Book Operations:");
             Console.WriteLine("1 - Add"); // 100%
             Console.WriteLine("2 - Search"); // 100%
-            Console.WriteLine("3 - Edit user"); // 0/5
-            Console.WriteLine("4 - Sort phone book"); // 2/3
+            Console.WriteLine("3 - Edit user"); // 100%
+            Console.WriteLine("4 - Sort phone book"); // 100%
             Console.WriteLine("5 - List phone book"); // 100%
             Console.WriteLine("6 - Delete"); // 100%
             Console.WriteLine("0 - End");   // 100 %
@@ -167,6 +167,13 @@ namespace Project_PhoneBook
             // https://www.csharp-examples.net/align-string-with-spaces/
             //
 
+            if (phoneList.Count == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Phone bok is empty!");
+                return 0;
+            }
+
             int count = 1;
          // Console.Clear();
             Console.WriteLine("--------------------------All user from your phone bok-------------------------------------");
@@ -197,7 +204,8 @@ namespace Project_PhoneBook
         {
             if (phoneList.Count == 0)
             {
-                Console.WriteLine("Empty phone book!");
+                Console.WriteLine("Phone book is empty!");
+                Console.WriteLine();
                 return;
             }
 
@@ -207,9 +215,60 @@ namespace Project_PhoneBook
             MainPrintAllPhoneList(phoneList);
 
             Console.Write("Choose number you want to delete from your phone book: ");
-            int number = int.Parse(Console.ReadLine());
+            string stringNumberAndCommad = Console.ReadLine();
 
-            phoneList.RemoveAt(number);
+            if (stringNumberAndCommad == string.Empty)
+            {
+                Console.Clear();
+                Console.WriteLine("Invalid operation!");
+                Console.WriteLine();
+                return;
+            }
+            else
+            {
+                int realNumber = int.Parse(stringNumberAndCommad);
+
+                DeleteUserPrint(phoneList, realNumber);
+
+                Console.Write("Would you like to delete this user? - Yes/No: ");
+                stringNumberAndCommad = Console.ReadLine();
+
+                if (stringNumberAndCommad == "Yes")
+                {
+                    phoneList.RemoveAt(realNumber - 1);
+                }
+                else
+                {
+                    Console.Clear();
+                    return;
+                }
+            }
+            Console.Clear();
+        }
+
+        private void DeleteUserPrint(List<PhoneBook> phoneList, int number)
+        {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("--------------------------All user from your phone bok-------------------------------------");
+            Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
+
+            string firstName = phoneList[number - 1].FirstName;
+            string lastName = phoneList[number - 1].LastName;
+            string firstNumber = phoneList[number - 1].PhoneNumbers["first"];
+            string secondNumber = "";
+            string thirdNumber = "";
+
+            if (phoneList[number - 1].PhoneNumbers.ContainsKey("second"))
+                secondNumber = phoneList[number - 1].PhoneNumbers["second"];
+
+            if (phoneList[number - 1].PhoneNumbers.ContainsKey("third"))
+                thirdNumber = phoneList[number - 1].PhoneNumbers["third"];
+
+            Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", number, firstName, lastName, firstNumber, secondNumber, thirdNumber));
+            
+            Console.WriteLine("-------------------------------------------------------------------------------------------");
+            Console.WriteLine();
         }
     }
 }

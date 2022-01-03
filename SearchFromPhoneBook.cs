@@ -10,6 +10,14 @@
         public void MainResearch(List<PhoneBook> phoneList)
         {
             Console.Clear();
+
+            if (phoneList.Count == 0)
+            {
+                Console.WriteLine("Phone book is empty!");
+                Console.WriteLine();
+                return;
+            }
+
             Console.WriteLine("1 - Search by name");
             Console.WriteLine("2 - Search by number");
             Console.Write("Please enter your choise: ");

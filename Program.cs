@@ -44,19 +44,18 @@
                         break;
 
                     case "4":
-                        SortAndPrintFromPhoneBook sortList = new SortAndPrintFromPhoneBook();
+                        SortFromPhoneBook sortList = new SortFromPhoneBook();
                         sortList.MainSortPrint(phoneList);
                         break;
+
                     case "5":
                         main.MainPrintAllPhoneList(phoneList);
                         break;
+
                     case "6":
                         main.RemoveFromPhoneBook(phoneList);
                         break;
-
                 }
-
-
                 main.MainPrintArguments();
                 endOrCommand = Console.ReadLine();
 
@@ -91,10 +90,6 @@
             // https://www.newtonsoft.com/json/help/html/DeserializeWithJsonSerializerFromFile.htm
             // 
 
-
-
-
-
             using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
@@ -109,9 +104,12 @@
                 PhoneJsonList = (List<PhoneBook>)serializer.Deserialize(file, typeof(List<PhoneBook>));
             }
 
-            // Test Console Print
-            string json = JsonConvert.SerializeObject(PhoneJsonList, Formatting.Indented);
-            Console.WriteLine(json);
+            Console.Clear();
+            Console.WriteLine("Bye.");
+
+           // Test Console Print
+          //  string json = JsonConvert.SerializeObject(PhoneJsonList, Formatting.Indented);
+         //   Console.WriteLine(json);
         }
 
 
