@@ -82,23 +82,22 @@
 
                 if(matchFirst && matchSecond && matchthird) // NOT WORK!
                 {
-                        PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
+                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
                 }
                 else if ((matchFirst || matchSecond) && matchthird == false)
                 {
-                    PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
+                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
                 }
                 else if (matchFirst =  false && (matchSecond || matchthird))
                 {
-                    PrintSortPhoneNumber(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
+                    PrintSortPhoneNumberAndName(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
                 }
                 else if ((matchFirst || matchthird) && matchSecond == false)
                 {
-                    PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
+                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
                 }
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------");
-            Console.WriteLine();
             Console.WriteLine();
         }
 
@@ -110,25 +109,47 @@
             string researchName = Console.ReadLine();
 
             string pattern = researchName;
+            string firstName = "";
+            string lastName = "";
+            string firstPhoneNumber = "";
+            string secondPhoneNumber = "";
+            string thirdPhoneNumber = "";
 
             Regex rg = new Regex(pattern);
 
-
+            Console.WriteLine();
+            Console.WriteLine("----------------------------All matches from your phone book-------------------------------");
+            Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var users in phoneList)
             {
                 string user = users.FirstName + " " + users.LastName;
 
+                firstName = users.FirstName;
+                lastName = users.LastName;
+
                 bool match = rg.IsMatch(user);
+
+                firstPhoneNumber = users.PhoneNumbers["first"];
+                secondPhoneNumber = "";
+                thirdPhoneNumber = "";
+
+                if (users.PhoneNumbers.ContainsKey("second"))
+                    secondPhoneNumber = users.PhoneNumbers["second"];
+
+                if (users.PhoneNumbers.ContainsKey("third"))
+                    thirdPhoneNumber = users.PhoneNumbers["third"];
 
                 if (match)
                 {
-                    Console.WriteLine($"{users.FirstName} {users.LastName} -> {users.PhoneNumbers["first"]}");
+                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
                 }
             }
+
+            Console.WriteLine("-------------------------------------------------------------------------------------------");
             Console.WriteLine();
         }
 
-        static private void PrintSortPhoneNumber(string firstName, string lastName, string firstNumber, string secondNumber, string thirdNumber)
+        static private void PrintSortPhoneNumberAndName(string firstName, string lastName, string firstNumber, string secondNumber, string thirdNumber)
         {
             int count = 1;
             Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
