@@ -39,6 +39,8 @@
                     break;
             }
         }
+
+
         static private void SearchByPhoneNumber(List<PhoneBook> phoneList)
         {
             Console.WriteLine();
@@ -50,18 +52,41 @@
 
             Regex rg = new Regex(pattern);
 
+            string firstName = "";
+            string lastName = "";
+            string firstPhoneNumber = "";
+            string secondPhoneNumber = "";
+            string thirdPhoneNumber = "";
 
+            Console.WriteLine();
+            Console.WriteLine("----------------------------All matches from your phone bok--------------------------------");
+            Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var phoneNumber in phoneList)
             {
-                string workPhoneNumber = phoneNumber.PhoneNumbers["first"];
+                firstName = phoneNumber.FirstName;
+                lastName = phoneNumber.LastName;
 
-                bool match = rg.IsMatch(workPhoneNumber);
+                firstPhoneNumber = phoneNumber.PhoneNumbers["first"];
+                secondPhoneNumber = "";
+                thirdPhoneNumber = "";
 
-                if (match)
+                if (phoneNumber.PhoneNumbers.ContainsKey("second"))
+                    secondPhoneNumber = phoneNumber.PhoneNumbers["second"];
+
+                if (phoneNumber.PhoneNumbers.ContainsKey("third"))
+                    thirdPhoneNumber = phoneNumber.PhoneNumbers["third"];
+
+                bool matchFirst = rg.IsMatch(firstPhoneNumber);
+                bool matchSecond = rg.IsMatch(secondPhoneNumber);
+                bool matchthirdNumber = rg.IsMatch(thirdPhoneNumber);
+
+                if(matchFirst || matchSecond || matchthirdNumber) // NOT WORK!
                 {
-                    Console.WriteLine($"{phoneNumber.FirstName} {phoneNumber.LastName} -> {phoneNumber.PhoneNumbers["first"]}");
+                    PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
                 }
             }
+            Console.WriteLine("-------------------------------------------------------------------------------------------");
+            Console.WriteLine();
             Console.WriteLine();
         }
 
@@ -89,6 +114,12 @@
                 }
             }
             Console.WriteLine();
+        }
+
+        static private void PrintSortPhoneNumber(string firstName, string lastName, string firstNumber, string secondNumber, string thirdNumber)
+        {
+            int count = 1;
+            Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
         }
     }
 }

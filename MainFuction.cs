@@ -233,7 +233,7 @@ namespace Project_PhoneBook
                 Console.Write("Would you like to delete this user? - Yes/No: ");
                 stringNumberAndCommad = Console.ReadLine();
 
-                if (stringNumberAndCommad == "Yes")
+                if (stringNumberAndCommad == "Yes" || stringNumberAndCommad == "yes")
                 {
                     phoneList.RemoveAt(realNumber - 1);
                 }
@@ -246,11 +246,11 @@ namespace Project_PhoneBook
             Console.Clear();
         }
 
-        private void DeleteUserPrint(List<PhoneBook> phoneList, int number)
+        static private void DeleteUserPrint(List<PhoneBook> phoneList, int number)
         {
             Console.Clear();
             Console.WriteLine();
-            Console.WriteLine("--------------------------All user from your phone bok-------------------------------------");
+            Console.WriteLine("--------------------------User from your phone bok-------------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
 
             string firstName = phoneList[number - 1].FirstName;
