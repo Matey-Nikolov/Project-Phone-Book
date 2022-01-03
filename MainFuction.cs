@@ -169,7 +169,7 @@ namespace Project_PhoneBook
 
             int count = 1;
          // Console.Clear();
-            Console.WriteLine("--------------------------All user from your phone bok---------------------------------");
+            Console.WriteLine("--------------------------All user from your phone bok-------------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var AllItem in phoneList)
             {
@@ -181,13 +181,14 @@ namespace Project_PhoneBook
 
                 if (AllItem.PhoneNumbers.ContainsKey("second"))
                     secondNumber = AllItem.PhoneNumbers["second"];
-                else if (AllItem.PhoneNumbers.ContainsKey("third"))
+               
+                if (AllItem.PhoneNumbers.ContainsKey("third"))
                     thirdNumber = AllItem.PhoneNumbers["third"];
 
                 Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
                 count++;
             }
-            Console.WriteLine("---------------------------------------------------------------------------------------");
+            Console.WriteLine("-------------------------------------------------------------------------------------------");
             Console.WriteLine();
             return count;
         }

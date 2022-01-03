@@ -31,7 +31,6 @@
                 {
                     case "1":
                         phoneList = main.AddList(phoneList);
-
                         break;
 
                     case "2":
@@ -40,7 +39,7 @@
                         break;
 
                     case "3":
-                        ModificationUserFromPhoneBook<List<PhoneBook>> editList = new ModificationUserFromPhoneBook<List<PhoneBook>>();
+                        EditUserFromPhoneBook<List<PhoneBook>> editList = new EditUserFromPhoneBook<List<PhoneBook>>();
                         editList.MainChanges(phoneList);
                         break;
 
