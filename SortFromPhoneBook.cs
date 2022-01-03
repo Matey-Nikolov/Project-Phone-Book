@@ -58,7 +58,7 @@
             if (number == "1")
             {
                 int count = 1;
-                Console.WriteLine("--------------------------Sort all user from your phone bok----------------------------------");
+                Console.WriteLine("--------------------------Sort all user from your phone book---------------------------------");
                 Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
                 foreach (var AllItem in phoneList.OrderByDescending(x => x.FirstName).ThenBy(x => x.LastName))
                 {
@@ -87,7 +87,7 @@
             else if (number == "2")
             {
                 int count = 1;
-                Console.WriteLine("--------------------------Sort all user from your phone bok----------------------------------");
+                Console.WriteLine("--------------------------Sort all user from your phone book---------------------------------");
                 Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
                 foreach (var AllItem in phoneList.OrderBy(x => x.FirstName).ThenBy(x => x.LastName))
                 {
@@ -138,7 +138,7 @@
             List<PhoneBook> newSortPhoneNumberList = new List<PhoneBook>();
 
             int count = 1;
-            Console.WriteLine("--------------------------Sort all user from your phone bok----------------------------------");
+            Console.WriteLine("--------------------------Sort all user from your phone book---------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var AllItem in phoneList.OrderBy(x => x.PhoneNumbers["first"]))
             {

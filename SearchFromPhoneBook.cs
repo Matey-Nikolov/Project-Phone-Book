@@ -59,7 +59,7 @@
             string thirdPhoneNumber = "";
 
             Console.WriteLine();
-            Console.WriteLine("----------------------------All matches from your phone bok--------------------------------");
+            Console.WriteLine("----------------------------All matches from your phone book-------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var phoneNumber in phoneList)
             {
@@ -78,11 +78,23 @@
 
                 bool matchFirst = rg.IsMatch(firstPhoneNumber);
                 bool matchSecond = rg.IsMatch(secondPhoneNumber);
-                bool matchthirdNumber = rg.IsMatch(thirdPhoneNumber);
+                bool matchthird = rg.IsMatch(thirdPhoneNumber);
 
-                if(matchFirst || matchSecond || matchthirdNumber) // NOT WORK!
+                if(matchFirst && matchSecond && matchthird) // NOT WORK!
                 {
-                    PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
+                        PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
+                }
+                else if ((matchFirst || matchSecond) && matchthird == false)
+                {
+                    PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
+                }
+                else if (matchFirst =  false && (matchSecond || matchthird))
+                {
+                    PrintSortPhoneNumber(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
+                }
+                else if ((matchFirst || matchthird) && matchSecond == false)
+                {
+                    PrintSortPhoneNumber(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
                 }
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------");

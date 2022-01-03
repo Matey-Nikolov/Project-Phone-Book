@@ -61,7 +61,7 @@ namespace Project_PhoneBook
 
         public List<PhoneBook> AddList(List<PhoneBook>  phoneList) //List<T>
         {
-            
+            Console.Clear();
             PhoneBook phoneBook = new PhoneBook();
 
             Console.Write("Enter first name*: ");
@@ -110,8 +110,7 @@ namespace Project_PhoneBook
             {
                 phoneBook = new PhoneBook(firstName, lastName, firstPhoneNumber, secondPhoneNumber);
             }
-
-            if (thirdPhoneNumber != string.Empty)
+            else if (thirdPhoneNumber != string.Empty)
             {
                 phoneBook = new PhoneBook(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
             }
@@ -122,7 +121,6 @@ namespace Project_PhoneBook
 
             phoneList.Add(phoneBook);
             return phoneList;
-            
         }
 
         /*
@@ -176,7 +174,7 @@ namespace Project_PhoneBook
 
             int count = 1;
          // Console.Clear();
-            Console.WriteLine("--------------------------All user from your phone bok-------------------------------------");
+            Console.WriteLine("--------------------------All user from your phone book------------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
             foreach (var AllItem in phoneList)
             {
@@ -250,7 +248,7 @@ namespace Project_PhoneBook
         {
             Console.Clear();
             Console.WriteLine();
-            Console.WriteLine("--------------------------User from your phone bok-------------------------------------");
+            Console.WriteLine("--------------------------User from your phone book----------------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
 
             string firstName = phoneList[number - 1].FirstName;

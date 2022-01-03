@@ -27,7 +27,7 @@ namespace Project_PhoneBook
             int editNumber = int.Parse(Console.ReadLine());
 
             Console.Clear();
-            Console.WriteLine("Edit operation for one user.");
+            Console.WriteLine("Edit operation for this user.");
             Console.WriteLine("1 - Fisrt name");
             Console.WriteLine("2 - Last name");
             Console.WriteLine("3 - First number");
