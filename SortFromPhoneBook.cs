@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json;
 
-    public class SortFromPhoneBook /*: IEnumerable<PhoneBook>*/
+    public class SortFromPhoneBook /*: IEnumerable<PhoneBook> */
     {
         // private List<PhoneBook> phoneList2 { get; set; }
 
@@ -172,5 +172,17 @@
                 serializer.Serialize(file, phoneList);
             }
         }
+
+        /*
+        public IEnumerator<PhoneBook> GetEnumerator()
+        {
+            return SortByPhoneNumber();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        */
     }
 }

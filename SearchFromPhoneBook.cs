@@ -80,26 +80,48 @@
                 bool matchSecond = rg.IsMatch(secondPhoneNumber);
                 bool matchthird = rg.IsMatch(thirdPhoneNumber);
 
-                //if(matchFirst && matchSecond && matchthird) // NOT WORK!
-                //{
-                //    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
-                //}
-                //else if (matchFirst && matchSecond || matchFirst && matchthird == false)
-                //{
-                //    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
-                //}
-                //else if ((matchFirst == false && matchSecond) || (matchSecond && matchthird))
-                //{
-                //    PrintSortPhoneNumberAndName(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
-                //}
-                //else if ((matchFirst && matchthird) && matchSecond == false)
-                //{
-                //    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
-                //}
+                ValoidationMatches(matchFirst, matchSecond, matchthird, firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------");
             Console.WriteLine();
         }
+
+        static private void ValoidationMatches(bool matchFirst, bool matchSecond, bool matchthird, string firstName, string lastName, string firstPhoneNumber, string secondPhoneNumber, string thirdPhoneNumber)
+        {
+            if (matchFirst && matchSecond && matchthird)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
+            }
+            else if (matchFirst && matchSecond == false && matchthird == false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, "", "");
+            }
+            else if (matchFirst == false && matchSecond != false && matchthird == false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, "", secondPhoneNumber, "");
+            }
+            else if (matchFirst == false && matchSecond == false && matchthird != false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, "", "", thirdPhoneNumber);
+            }
+            else if (matchFirst != false && matchSecond != false && matchthird == false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
+            }
+            else if (matchFirst == false && matchSecond != false && matchthird != false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
+            }
+            else if (matchFirst != false && matchSecond != false && matchthird == false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
+            }
+            else if (matchFirst != false && matchSecond == false && matchthird != false)
+            {
+                PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
+            }
+        }
+
 
         private void SearchByName(List<PhoneBook> phoneList)
         {
