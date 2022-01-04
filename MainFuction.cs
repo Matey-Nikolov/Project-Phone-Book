@@ -76,10 +76,9 @@ namespace Project_PhoneBook
             Console.Write("Enter first phone number* +359 ** *** ****: ");
             string firstPhoneNumber = Console.ReadLine();
 
-            firstPhoneNumber = Validation(firstPhoneNumber);
-
             if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty) || (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber != string.Empty))
             {
+                Console.Clear();
                 Console.WriteLine();
                 Console.WriteLine("You must write first, last name and first phone number!");
 
@@ -92,7 +91,7 @@ namespace Project_PhoneBook
                 Console.Write("Enter fisrt phone number +359 ** *** ****: ");
                 firstPhoneNumber = Console.ReadLine();
                 
-                firstPhoneNumber = Validation(firstPhoneNumber);
+                //firstPhoneNumber = Validation(firstPhoneNumber);
 
                 if (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty)
                 {
@@ -100,13 +99,19 @@ namespace Project_PhoneBook
                 }
             }
 
+            firstPhoneNumber = Validation(firstPhoneNumber);
+
             Console.Write("Enter second phone number +359 ** *** **** (option): ");
             string secondPhoneNumber = Console.ReadLine();
-            //  homePhoneNumber = Validation(homePhoneNumber);
+
+            if (secondPhoneNumber != string.Empty)
+                secondPhoneNumber = Validation(secondPhoneNumber);
 
             Console.Write("Enter third phone number +359 ** *** **** (option): ");
             string thirdPhoneNumber = Console.ReadLine();
-            //   otherPhoneNumber = Validation(otherPhoneNumber);
+
+            if (secondPhoneNumber != string.Empty)
+                thirdPhoneNumber = Validation(thirdPhoneNumber);
 
 
             if (secondPhoneNumber != string.Empty && thirdPhoneNumber == string.Empty)
@@ -123,6 +128,7 @@ namespace Project_PhoneBook
             }
 
             phoneList.Add(phoneBook);
+            Console.Clear();
             return phoneList;
         }
 
@@ -149,9 +155,11 @@ namespace Project_PhoneBook
                 if (!matchPhoneNumber.Success)
                 {
                     Console.WriteLine("Bye!");
+                    Console.WriteLine();
                     return "";
                 }
                 else
+                    Console.WriteLine();
                     return tryAgainPhoneNumber;
             }
 

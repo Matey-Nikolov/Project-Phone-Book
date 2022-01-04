@@ -80,22 +80,22 @@
                 bool matchSecond = rg.IsMatch(secondPhoneNumber);
                 bool matchthird = rg.IsMatch(thirdPhoneNumber);
 
-                if(matchFirst && matchSecond && matchthird) // NOT WORK!
-                {
-                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
-                }
-                else if ((matchFirst || matchSecond) && matchthird == false)
-                {
-                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
-                }
-                else if (matchFirst =  false && (matchSecond || matchthird))
-                {
-                    PrintSortPhoneNumberAndName(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
-                }
-                else if ((matchFirst || matchthird) && matchSecond == false)
-                {
-                    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
-                }
+                //if(matchFirst && matchSecond && matchthird) // NOT WORK!
+                //{
+                //    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
+                //}
+                //else if (matchFirst && matchSecond || matchFirst && matchthird == false)
+                //{
+                //    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, secondPhoneNumber, "");
+                //}
+                //else if ((matchFirst == false && matchSecond) || (matchSecond && matchthird))
+                //{
+                //    PrintSortPhoneNumberAndName(firstName, lastName, "", secondPhoneNumber, thirdPhoneNumber);
+                //}
+                //else if ((matchFirst && matchthird) && matchSecond == false)
+                //{
+                //    PrintSortPhoneNumberAndName(firstName, lastName, firstPhoneNumber, "", thirdPhoneNumber);
+                //}
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------");
             Console.WriteLine();
