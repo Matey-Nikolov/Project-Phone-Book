@@ -35,12 +35,12 @@
 
                     case "2":
                         SearchFromPhoneBook searchList = new SearchFromPhoneBook();
-                        searchList.MainResearch(phoneList);
+                        searchList.MainSearch(phoneList);
                         break;
 
                     case "3":
                         EditUserFromPhoneBook<List<PhoneBook>> editList = new EditUserFromPhoneBook<List<PhoneBook>>();
-                        editList.MainChanges(phoneList);
+                        editList.MainEdit(phoneList);
                         break;
 
                     case "4":

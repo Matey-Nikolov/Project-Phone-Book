@@ -9,7 +9,7 @@ namespace Project_PhoneBook
 {
     public class EditUserFromPhoneBook<T>
     {
-        public void MainChanges(List<PhoneBook> phoneList)
+        public void MainEdit(List<PhoneBook> phoneList)
         {
             Console.Clear();
             Console.WriteLine("We will print all users.");

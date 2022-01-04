@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -61,8 +62,10 @@ namespace Project_PhoneBook
 
         public List<PhoneBook> AddList(List<PhoneBook>  phoneList) //List<T>
         {
-            Console.Clear();
             PhoneBook phoneBook = new PhoneBook();
+
+            Console.Clear();
+            Console.WriteLine("You must write first, last name and first phone number!");
 
             Console.Write("Enter first name*: ");
             string firstName = Console.ReadLine();
@@ -73,11 +76,12 @@ namespace Project_PhoneBook
             Console.Write("Enter first phone number* +359 ** *** ****: ");
             string firstPhoneNumber = Console.ReadLine();
 
+            firstPhoneNumber = Validation(firstPhoneNumber);
 
-            if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty))
+            if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty) || (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber != string.Empty))
             {
-                Console.Clear();
-                Console.WriteLine("You must write first, last name and work phone number!");
+                Console.WriteLine();
+                Console.WriteLine("You must write first, last name and first phone number!");
 
                 Console.Write("Enter first name: ");
                 firstName = Console.ReadLine();
@@ -87,15 +91,14 @@ namespace Project_PhoneBook
 
                 Console.Write("Enter fisrt phone number +359 ** *** ****: ");
                 firstPhoneNumber = Console.ReadLine();
-                //  workPhoneNumber = Validation(workPhoneNumber);
+                
+                firstPhoneNumber = Validation(firstPhoneNumber);
 
                 if (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty)
                 {
                     Console.WriteLine("Bye!");
                 }
             }
-
-            //  workPhoneNumber = Validation(workPhoneNumber);
 
             Console.Write("Enter second phone number +359 ** *** **** (option): ");
             string secondPhoneNumber = Console.ReadLine();
@@ -123,41 +126,38 @@ namespace Project_PhoneBook
             return phoneList;
         }
 
-        /*
+        
         private string Validation(string phoneNumber)
         {
-            string pattern = @"(\+359) ?[0-9]{2} ?[0-9]{3} ?[0-9]{4}";
+            string pattern = @"^(\+359) ?[0-9]{2} ?[0-9]{3} ?[0-9]{4}$";
 
-            if (phoneNumber != string.Empty)
+            Regex rg = new Regex(pattern);
+            Match matchPhoneNumber = rg.Match(phoneNumber);
+
+            string tryAgainPhoneNumber = "";
+
+            if (!matchPhoneNumber.Success)
             {
-                Regex rg = new Regex(pattern);
-                Match matchPhoneNumber = rg.Match(phoneNumber);
+                Console.WriteLine();
+                Console.WriteLine("Invalid phone number!");
+                Console.Write("Try again +359 ** *** ****: ");
 
-                string tryAgainPhoneNumber = "";
+                tryAgainPhoneNumber = Console.ReadLine();
+
+                matchPhoneNumber = rg.Match(tryAgainPhoneNumber);
 
                 if (!matchPhoneNumber.Success)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine("Invalid phone number!");
-                    Console.Write("Try again +359 ** *** ****: ");
-
-                    tryAgainPhoneNumber = Console.ReadLine();
-
-                    matchPhoneNumber = rg.Match(tryAgainPhoneNumber);
-
-                    if (!matchPhoneNumber.Success)
-                    {
-                        Console.WriteLine("Bye!");
-                        return "";
-                    }
-                    else
-                        return tryAgainPhoneNumber;
+                    Console.WriteLine("Bye!");
+                    return "";
                 }
+                else
+                    return tryAgainPhoneNumber;
             }
 
             return phoneNumber;
         }
-        */
+        
 
         public int MainPrintAllPhoneList(List<PhoneBook> phoneList)
         {

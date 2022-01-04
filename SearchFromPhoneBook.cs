@@ -7,7 +7,7 @@
 
     public class SearchFromPhoneBook 
     {
-        public void MainResearch(List<PhoneBook> phoneList)
+        public void MainSearch(List<PhoneBook> phoneList)
         {
             Console.Clear();
 
