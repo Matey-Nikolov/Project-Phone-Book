@@ -3,14 +3,13 @@
     using System;
     //
     // Инсталиране на Newtonsoft.Json 
-    // Project>Managet NuGet packages...
-    // Brows>Search> Newtonsoft.Json
+    // Project > Managet NuGet packages...
+    // Brows >Search > Newtonsoft.Json
     // Install
     //
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.IO;
-    using System.Text.RegularExpressions;
 
     public class Program
     {
@@ -111,8 +110,5 @@
           //  string json = JsonConvert.SerializeObject(PhoneJsonList, Formatting.Indented);
          //   Console.WriteLine(json);
         }
-
-
-        
     }
 }

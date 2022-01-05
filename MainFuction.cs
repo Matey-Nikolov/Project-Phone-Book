@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-
-namespace Project_PhoneBook
+﻿namespace Project_PhoneBook
 {
-    public class MainFuction /*<T>*/
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text.RegularExpressions;
+    using Newtonsoft.Json;
+
+    public class MainFuction
     {
-        public List<PhoneBook> Initialization(List<PhoneBook> phoneList) // T
+        public List<PhoneBook> Initialization(List<PhoneBook> phoneList)
         {
             string fileName = @"..\..\..\phoneList.json";
 
@@ -168,7 +168,7 @@ namespace Project_PhoneBook
             //
             // https://www.csharp-examples.net/align-string-with-spaces/
             //
-
+            
             if (phoneList.Count == 0)
             {
                 Console.Clear();

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Project_PhoneBook
+﻿namespace Project_PhoneBook
 {
+    using System;
+    //using System.Collections;
+    using System.Collections.Generic;
+   // using System.Linq;
+   // using System.Text;
+   // using System.Threading.Tasks;
+
     public class EditUserFromPhoneBook<T>
     {
         public void MainEdit(List<PhoneBook> phoneList)
@@ -61,8 +61,6 @@ namespace Project_PhoneBook
                     Console.WriteLine();
                     break;
             }
-
-
         }
 
         static private void EditThirdPhoneNumber(List<PhoneBook> phoneList, int editNumber)
