@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Project_PhoneBook
@@ -206,7 +202,7 @@ namespace Project_PhoneBook
             return count;
         }
 
-        public void RemoveFromPhoneBook(List<PhoneBook> phoneList)
+        public void DeleteFromPhoneBook(List<PhoneBook> phoneList)
         {
             if (phoneList.Count == 0)
             {

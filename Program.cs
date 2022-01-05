@@ -53,7 +53,7 @@
                         break;
 
                     case "6":
-                        main.RemoveFromPhoneBook(phoneList);
+                        main.DeleteFromPhoneBook(phoneList);
                         break;
                 }
                 main.MainPrintArguments();
@@ -79,10 +79,10 @@
             //
             //
             //using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
-            // {
+            //{
             //     JsonSerializer serializer = new JsonSerializer();
             //     serializer.Serialize(file, phoneList);
-            //  }
+            //}
 
             //
             // Deserialize PhoneBook List from a file in JSON Format (JSON READ from FILE)
