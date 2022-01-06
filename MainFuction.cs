@@ -7,7 +7,7 @@
     using System.Text.RegularExpressions;
     using Newtonsoft.Json;
 
-    public class MainFuction
+    public class MainFuction /*: IEnumerable<PhoneBook> */
     {
         public List<PhoneBook> Initialization(List<PhoneBook> phoneList)
         {
@@ -76,7 +76,6 @@
             if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty) || (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber != string.Empty))
             {
                 Console.Clear();
-                Console.WriteLine();
                 Console.WriteLine("You must write first, last name and first phone number!");
 
                 Console.Write("Enter first name: ");
@@ -93,6 +92,8 @@
                 if (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty)
                 {
                     Console.WriteLine("Bye!");
+                    Console.WriteLine();
+                    return phoneList;
                 }
             }
 
@@ -176,6 +177,8 @@
                 Console.WriteLine("Phone bok is empty!");
                 return 0;
             }
+
+           // GetEnumerator(phoneList);
 
             int count = 1;
          // Console.Clear();
@@ -274,5 +277,34 @@
             Console.WriteLine();
         }
 
+        /*
+        IEnumerator<object> IEnumerable<PhoneBook>.GetEnumerator(List<PhoneBook> phoneList)
+        {
+            int count = 1;
+            foreach (var AllItem in PhoneBook)
+            {
+                string firstName = AllItem.FirstName;
+                string lastName = AllItem.LastName;
+                string firstNumber = AllItem.PhoneNumbers["first"];
+                string secondNumber = "";
+                string thirdNumber = "";
+
+                if (AllItem.PhoneNumbers.ContainsKey("second"))
+                    secondNumber = AllItem.PhoneNumbers["second"];
+
+                if (AllItem.PhoneNumbers.ContainsKey("third"))
+                    thirdNumber = AllItem.PhoneNumbers["third"];
+
+                Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
+                count++;
+                yield return AllItem;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+        */
     }
 }

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class PhoneBook: 
+    public class PhoneBook
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

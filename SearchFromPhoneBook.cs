@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
 
 
-    public class SearchFromPhoneBook: IComparer<string>
+    public class SearchFromPhoneBook /* : IComparer<string> */
     {
         public void MainSearch(List<PhoneBook> phoneList)
         {
@@ -164,11 +164,11 @@
                 firstName = users.FirstName;
                 lastName = users.LastName;
 
-                int number1 = Compare(firstName, researchName);
+               // int number1 = Compare(firstName, researchName);
               //  int number2 = Compare(lastName, researchName);
 
-                if (number1 == 0)
-                {
+             //   if (number1 == 0)
+                //{
 
                     firstPhoneNumber = users.PhoneNumbers["first"];
                     secondPhoneNumber = "";
@@ -181,7 +181,7 @@
                         thirdPhoneNumber = users.PhoneNumbers["third"];
 
                         PrintSortPhoneNumberAndName(ref count, firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
-                }
+              //  }
             }
 
             Console.WriteLine("-------------------------------------------------------------------------------------------");
@@ -194,6 +194,7 @@
             Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
         }
 
+        /*
         public int Compare(string user, string researchName)
         {
             int result = user.CompareTo(researchName);
@@ -206,5 +207,6 @@
 
             return result;
         }
+        */
     }
 }

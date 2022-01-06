@@ -54,6 +54,9 @@
                     case "6":
                         main.DeleteFromPhoneBook(phoneList);
                         break;
+
+                    case "7":
+                        break;
                 }
                 main.MainPrintArguments();
                 endOrCommand = Console.ReadLine();
