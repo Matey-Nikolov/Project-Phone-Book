@@ -6,9 +6,8 @@
     using System.Linq;
     using Newtonsoft.Json;
 
-    public class SortFromPhoneBook /*: IEnumerable<PhoneBook> */
+    public class SortFromPhoneBook
     {
-        // private List<PhoneBook> phoneList2 { get; set; }
 
         public void MainSortPrint(List<PhoneBook> phoneList)
         {
@@ -169,17 +168,5 @@
                 serializer.Serialize(file, phoneList);
             }
         }
-
-        /*
-        public IEnumerator<PhoneBook> GetEnumerator()
-        {
-            return SortByPhoneNumber();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-        */
     }
 }

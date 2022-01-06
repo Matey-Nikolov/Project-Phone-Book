@@ -7,7 +7,7 @@
     using System.Text.RegularExpressions;
     using Newtonsoft.Json;
 
-    public class MainFuction /*: IEnumerable<PhoneBook>*/
+    public class MainFuction
     {
         public List<PhoneBook> Initialization(List<PhoneBook> phoneList)
         {
@@ -273,5 +273,6 @@
             Console.WriteLine("-------------------------------------------------------------------------------------------");
             Console.WriteLine();
         }
+
     }
 }

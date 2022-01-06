@@ -6,7 +6,7 @@
     using System.Text.RegularExpressions;
 
 
-    public class SearchFromPhoneBook
+    public class SearchFromPhoneBook: IComparer<string>
     {
         public void MainSearch(List<PhoneBook> phoneList)
         {
@@ -65,6 +65,8 @@
             foreach (var phoneNumber in phoneList)
             {
 
+               
+
                 firstName = phoneNumber.FirstName;
                 lastName = phoneNumber.LastName;
 
@@ -87,6 +89,7 @@
             Console.WriteLine("-------------------------------------------------------------------------------------------");
             Console.WriteLine();
         }
+
 
         static private void ValoidationMatches(ref int count, bool matchFirst, bool matchSecond, bool matchthird, string firstName, string lastName, string firstPhoneNumber, string secondPhoneNumber, string thirdPhoneNumber)
         {
@@ -140,7 +143,7 @@
 
             string researchName = Console.ReadLine();
 
-           // phoneList.Where();
+            // phoneList.Where();
 
             string pattern = researchName;
             string firstName = "";
@@ -161,21 +164,23 @@
                 firstName = users.FirstName;
                 lastName = users.LastName;
 
-                bool match = rg.IsMatch(user);
+                int number1 = Compare(firstName, researchName);
+              //  int number2 = Compare(lastName, researchName);
 
-                firstPhoneNumber = users.PhoneNumbers["first"];
-                secondPhoneNumber = "";
-                thirdPhoneNumber = "";
-
-                if (users.PhoneNumbers.ContainsKey("second"))
-                    secondPhoneNumber = users.PhoneNumbers["second"];
-
-                if (users.PhoneNumbers.ContainsKey("third"))
-                    thirdPhoneNumber = users.PhoneNumbers["third"];
-
-                if (match)
+                if (number1 == 0)
                 {
-                    PrintSortPhoneNumberAndName(ref count, firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
+
+                    firstPhoneNumber = users.PhoneNumbers["first"];
+                    secondPhoneNumber = "";
+                    thirdPhoneNumber = "";
+
+                    if (users.PhoneNumbers.ContainsKey("second"))
+                        secondPhoneNumber = users.PhoneNumbers["second"];
+
+                    if (users.PhoneNumbers.ContainsKey("third"))
+                        thirdPhoneNumber = users.PhoneNumbers["third"];
+
+                        PrintSortPhoneNumberAndName(ref count, firstName, lastName, firstPhoneNumber, secondPhoneNumber, thirdPhoneNumber);
                 }
             }
 
@@ -187,6 +192,19 @@
         {
 
             Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
+        }
+
+        public int Compare(string user, string researchName)
+        {
+            int result = user.CompareTo(researchName);
+
+            if (result == 0)
+            {
+               // result = researchName.CompareTo(user);
+                return result;
+            }
+
+            return result;
         }
     }
 }
