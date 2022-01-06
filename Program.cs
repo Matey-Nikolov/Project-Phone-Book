@@ -61,7 +61,7 @@
                 Console.Clear();
             }
 
-            // 
+            //
             // Serialize PhoneBook List to File in JSON Format (JSON WRITE to FILE)
             //
             // Програмиране за .NET Framework (том 2)
@@ -85,9 +85,9 @@
 
             //
             // Deserialize PhoneBook List from a file in JSON Format (JSON READ from FILE)
-            // 
+            //
             // https://www.newtonsoft.com/json/help/html/DeserializeWithJsonSerializerFromFile.htm
-            // 
+            //
 
             using (StreamWriter file = File.CreateText(@"..\..\..\phoneList.json"))
             {

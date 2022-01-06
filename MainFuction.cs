@@ -1,12 +1,13 @@
 ﻿namespace Project_PhoneBook
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.IO;
     using System.Text.RegularExpressions;
     using Newtonsoft.Json;
 
-    public class MainFuction
+    public class MainFuction /*: IEnumerable<PhoneBook>*/
     {
         public List<PhoneBook> Initialization(List<PhoneBook> phoneList)
         {
