@@ -73,7 +73,7 @@
             Console.Write("Enter first phone number* +359 ** *** ****: ");
             string firstPhoneNumber = Console.ReadLine();
 
-            if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty) || (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber != string.Empty))
+            if ((firstName == string.Empty && lastName == string.Empty && firstPhoneNumber == string.Empty) || (firstName != string.Empty && lastName != string.Empty && firstPhoneNumber == string.Empty) || (firstName == string.Empty && lastName == string.Empty && firstPhoneNumber != string.Empty) || (firstName != string.Empty && lastName == string.Empty && firstPhoneNumber != string.Empty) || (firstName == string.Empty && lastName != string.Empty))
             {
                 Console.Clear();
                 Console.WriteLine("You must write first, last name and first phone number!");
