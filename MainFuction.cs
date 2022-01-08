@@ -178,25 +178,34 @@
                 return 0;
             }
 
-           // GetEnumerator(phoneList);
+            PhoneBook phoneListAllPrint = new PhoneBook();
+            phoneListAllPrint.phoneListAllPrint = phoneList;
+
+            /* Test print.
+            foreach (PhoneBook item in phoneListAllPrint)
+            {
+                Console.WriteLine($"{count} {item}");
+                count++;
+            }
+            */
 
             int count = 1;
          // Console.Clear();
             Console.WriteLine("--------------------------All user from your phone book------------------------------------");
             Console.WriteLine("Number | First Name | Last Name  | Fisrt number      | Second number     | Third number");
-            foreach (var AllItem in phoneList)
+            foreach (var allItem in phoneListAllPrint)
             {
-                string firstName = AllItem.FirstName;
-                string lastName = AllItem.LastName;
-                string firstNumber = AllItem.PhoneNumbers["first"];
+                string firstName = allItem.FirstName;
+                string lastName = allItem.LastName;
+                string firstNumber = allItem.PhoneNumbers["first"];
                 string secondNumber = "";
                 string thirdNumber = "";
 
-                if (AllItem.PhoneNumbers.ContainsKey("second"))
-                    secondNumber = AllItem.PhoneNumbers["second"];
+                if (allItem.PhoneNumbers.ContainsKey("second"))
+                    secondNumber = allItem.PhoneNumbers["second"];
                
-                if (AllItem.PhoneNumbers.ContainsKey("third"))
-                    thirdNumber = AllItem.PhoneNumbers["third"];
+                if (allItem.PhoneNumbers.ContainsKey("third"))
+                    thirdNumber = allItem.PhoneNumbers["third"];
 
                 Console.WriteLine(String.Format("{0,-6} | {1,-10} | {2,-10} | {3,-17} | {4,-17} | {5,-17}", count, firstName, lastName, firstNumber, secondNumber, thirdNumber));
                 count++;
